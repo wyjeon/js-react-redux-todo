@@ -1,5 +1,7 @@
 import React from 'react';
 import useTodo from '../hooks/useTodo';
+import { MdAdd } from 'react-icons/md';
+import './TodoInsert.scss';
 
 function TodoInsert() {
   const { input, onChangeInput, onInsert } = useTodo();
@@ -15,12 +17,16 @@ function TodoInsert() {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input value={input} onChange={onChange} />
-        <button type="submit">등록</button>
-      </form>
-    </div>
+    <form className="TodoInsert" onSubmit={onSubmit}>
+      <input
+        value={input}
+        onChange={onChange}
+        placeholder="할 일을 입력하세요"
+      />
+      <button type="submit">
+        <MdAdd />
+      </button>
+    </form>
   );
 }
 
