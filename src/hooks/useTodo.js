@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeInput, insert, remove, toggle } from '../modules/todos';
+import { changeInput, insert, remove, toggle, update } from '../modules/todos';
 
 function useTodo() {
   const { input, todos } = useSelector(({ todos }) => ({
@@ -15,6 +15,9 @@ function useTodo() {
   const onInsert = useCallback(text => dispatch(insert(text)), [dispatch]);
   const onToggle = useCallback(id => dispatch(toggle(id)), [dispatch]);
   const onRemove = useCallback(id => dispatch(remove(id)), [dispatch]);
+  const onUpdate = useCallback((id, text) => dispatch(update(id, text)), [
+    dispatch,
+  ]);
 
   return {
     input,
@@ -23,6 +26,7 @@ function useTodo() {
     onInsert,
     onToggle,
     onRemove,
+    onUpdate,
   };
 }
 

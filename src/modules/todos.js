@@ -2,6 +2,7 @@ const CHANGE_INPUT = 'todos/CHANGE_INPUT';
 const INSERT = 'todos/INSERT';
 const TOGGLE = 'todos/TOGGLE';
 const REMOVE = 'todos/REMOVE';
+const UPDATE = 'todos/UPDATE';
 
 export const changeInput = input => ({
   type: CHANGE_INPUT,
@@ -26,6 +27,12 @@ export const toggle = id => ({
 export const remove = id => ({
   type: REMOVE,
   id,
+});
+
+export const update = (id, text) => ({
+  type: UPDATE,
+  id,
+  text,
 });
 
 const initialState = {
@@ -72,6 +79,15 @@ function todos(state = initialState, action) {
       return {
         ...state,
         todos: state.todos.filter(todo => todo.id !== action.id),
+      };
+    case UPDATE:
+      return {
+        ...state,
+        todos: state.todos.map(todo =>
+          todo.id === action.id
+            ? { ...todo, text: action.text, done: false }
+            : todo
+        ),
       };
     default:
       return state;

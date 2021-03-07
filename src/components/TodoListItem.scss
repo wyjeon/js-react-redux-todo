@@ -39,6 +39,16 @@
       color: #ff8787;
     }
   }
+  .update {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #6dacac;
+    cursor: pointer;
+    &:hover {
+      color: #6ddcdc;
+    }
+  }
 
   // 엘리먼트 사이사이에 테두리를 넣어 줌
   & + & {
